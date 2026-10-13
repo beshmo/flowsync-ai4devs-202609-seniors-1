@@ -22,14 +22,61 @@ Borra el ejemplo de abajo cuando escribas el primero.
 
 ## Prompt 1
 
-**Modelo:** Opus 1M xHigh
+**Modelo:** Sonet 5.5 1M High
 **Herramienta:** Claude Code
 
 ```
-Este es el ejemplo. Bórralo.
-
-El prompt va aquí dentro, entero y con sus saltos de línea,
-para que se sepa dónde empieza y dónde acaba.
+lee el archivo CLAUDE.md y enumera las reglas de proceso, junto con una breve descripción de su cometido, que indican qué hacer antes de modificar código, cuándo crear commits, y otros procedimientos que encuentres
 ```
 
-**Qué salió:** (opcional, una línea) funcionó a la primera / tuve que insistir / me inventó una ruta que no existe.
+**Qué salió:** enumeró 5 reglas de proceso descritas en AGENTS.md
+
+
+## Prompt 2
+
+**Modelo:** Sonet 5.5 1M High
+**Herramienta:** Claude Code
+
+```
+crea una tabla vacía de 5 columnas en el archivo docs/auditoria/eps.md, con las siguientes cabeceras:
+  1. qué pide la regla, 2. qué se revisó para comprobarla, 3. veredicto, 4. evidencia, 5. qué harías con ella
+Después, inicializa cada fila de la tabla con las 5 reglas de proceso localizadas en la primera columna (mantén el número de regla que has usado en esta conversación)
+```
+
+**Qué salió:** escribió la tabla solicitada en el archivo indicado con una fila por regla
+
+
+## Prompt 3
+
+**Modelo:** Sonet 5.5 1M High
+**Herramienta:** Claude Code
+
+```
+ usa esa tabla como plantilla para crear las siguientes, revisa los últimos 15 commits para ver si cada una de esas reglas se aplicaron y rellena las columnas 2, 3 y 4, para la columna con el verdicto indica si se cumplió o no la regla o no hay información suficiente para determinarlo, en caso de dudas indícalo también. Para la columna con la evidencia escríbela en una línea. Si la regla no se cumple, indica dónde se incumple. Si no se puede comprobar, explica qué información falta. La última columna no la rellenes. Escribe todas las demás tablas en el mismo fichero eps.md. No corrijas ningún error detectado en el código.
+```
+
+**Qué salió:** escribió una tabla por cada uno de los 15 commits para facilitar la tarea de auditar las reglas
+
+
+## Prompt 4
+
+**Modelo:** Sonet 5.5 1M High
+**Herramienta:** Claude Code
+
+```
+rellena la primera tabla que se usó como plantilla para resumir el resultado del análisis realizado en las otras 15, excepto la última columna que la rellenaremos después
+```
+
+**Qué salió:** resumió su análisis de los 15 commits en la tabla indicada
+
+
+## Prompt 4
+
+**Modelo:** Sonet 5.5 1M High
+**Herramienta:** Claude Code
+
+```
+sugiere qué harías con cada una de esas reglas según los datos recopilados, dejarla, borrarla, o convertirla en una comprobación automática
+```
+
+**Qué salió:** realizó la propuesta solicitada para ayudarme con el análisis
